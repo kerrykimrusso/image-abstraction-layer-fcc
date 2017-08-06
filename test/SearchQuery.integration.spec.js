@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
 const mocha = require('mocha');
 const chai = require('chai');
 const chaiHttp = require('chai-http');
@@ -10,16 +11,23 @@ const SearchQueryModel = require('../api/search/SearchQuery.model');
 mocha.before((done) => {
   mongoose.connect(process.env.MONGOTESTDB).then(
     done,
-    console.log.bind(console, 'integration test could not connect with following error:')
+    console.log.bind(console, 'aw man... integration test could not connect with following error:')
   )
 });
 
 mocha.describe('Endpoint /api/v1/imagesearch', () => {
   mocha.before((done) => {
-    SearchQueryModel.
+    SearchQueryModel.create({ term: 'my first search' });
+    SearchQueryModel.create({ term: 'my second search' });
+    SearchQueryModel.create({ term: 'my third search' });
   });
   
-  mocha.it('should list history of serach terms ordered by date in descending order', (done) => {
-    chai.
+  mocha.it('should list history of search terms ordered by date in descending order', (done) => {
+    chai.request(app)
+      .get('/api/v1/imagesearch')
+      .end((err, res) => {
+        console.log(res);
+        done();
+      });
   });
 });
