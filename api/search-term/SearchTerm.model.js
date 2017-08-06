@@ -1,1 +1,0 @@
-// {"term":"lolcats funny","when":"2017-08-06T04:55:35.695Z"}
