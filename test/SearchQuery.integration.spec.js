@@ -11,7 +11,7 @@ const SearchQueryModel = require('../api/search/SearchQuery.model');
 mocha.before((done) => {
   mongoose.connect(process.env.MONGOTESTDB).then(
     done,
-    console.log.bind(console, 'aw man... integration test could not connect with following error:')
+    console.log.bind(console, 'aw man... integration test could not connect.')
   )
 });
 

@@ -7,7 +7,7 @@ mongoose.Promise = global.Promise;
 
 const app = require('./app');
 
-// mongoose.connect(process.env.MONGODB).then(app, 
-//   (err) => {
-//     throw err; 
-//   });
+mongoose.connect(process.env.MONGODB).then(app, 
+  (err) => {
+    throw err; 
+  });
