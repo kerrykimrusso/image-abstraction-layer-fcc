@@ -3,7 +3,7 @@ const model = require('./Search.model');
 
 module.exports = {
   list: function(req, res, next) {
-      model.find((err, docs) => {
+      model.find({}).select("term when -d").then((err, docs) => {
           if(err) {
               next(err);
               return;
@@ -24,7 +24,14 @@ module.exports = {
     };
     
     http.request(opts, (res) => {
-      console.log(res);
+      let str = '';
+      res.on('data', (chunk) => {
+        str += chunk;
+      });
+      
+      res.on('end', () => {
+        console.log(str);
+      });
     });
   }
 }
