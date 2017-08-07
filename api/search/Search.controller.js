@@ -1,4 +1,4 @@
-const https = require('https');
+const https = require('follow-redirects').https;
 const model = require('./Search.model');
 
 module.exports = {
@@ -22,18 +22,18 @@ module.exports = {
         });
   },
   getImages: function(req, res, next) {
-    https.get('https://google.com/search?q=' + encodeURIComponent(req.params.query), (err, res) => {
-      if(err) next();
-      
+    https.get('https://google.com/search?site=imghp&q=' + encodeURIComponent(req.params.query), (getres) => {
       let str = '';
-      res.on('data', (chunk) => {
+      getres.on('data', (chunk) => {
         str += chunk;
       });
       
-      res.on('end', (chunk) => {
-        res.send(str).end();
+      getres.on('end', (chunk) => {
+        console.log(str);
+        // res.send(str).end();
       });
-    });
+    }).on('error', console.log.bind(console));
+    
     // {"url":"https://i.ytimg.com/vi/8nOsEEBrEuA/hqdefault.jpg",
     // "snippet":"LOLCats in All Fired Up lol Cats Rock Funny Cats - YouTube",
     // "thumbnail":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuWNpmeNmLlMNc0v32tK83j4eOrOPVS6M2kty-CVFzQTvbS9d9WdKfrg7E",
