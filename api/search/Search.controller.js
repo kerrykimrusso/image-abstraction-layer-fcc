@@ -1,4 +1,4 @@
-const request = require('request');
+const http = require('http');
 const model = require('./Search.model');
 
 module.exports = {
@@ -18,6 +18,13 @@ module.exports = {
         .catch(next);
   },
   getImages: function(req, res, next) {
-    request('https://google.com/search')
+    let opts = {
+      host: "https://google.com",
+      path: "/search?q=" + req.params.query
+    };
+    
+    http.request(opts, (res) => {
+      console.log(res);
+    });
   }
 }
