@@ -1,6 +1,7 @@
-const SearchQueryController = require('../../api/search/SearchQuery.controller');
+const router = require('express').Router();
+const SearchQueryController = require('../../api/search/Search.controller');
 
-module.exports = function(app) {
-  app.get('/api/v1/imagesearch', SearchQueryController.list);
-  app.get('/api/v1/imagesearch/:query', SearchQueryController.saveQuery);
-}
+router.get('/api/v1/imagesearch', SearchQueryController.list);
+router.get('/api/v1/imagesearch/:query', SearchQueryController.saveQuery);
+
+module.exports = router;

@@ -1,4 +1,5 @@
-const model = require('./SearchQuery.model');
+const request = require('request');
+const model = require('./Search.model');
 
 module.exports = {
   list: function(req, res, next) {
@@ -12,8 +13,11 @@ module.exports = {
       });
   },
   saveQuery: function(req, res, next) {
-      model.create({})
+      model.create({ term: req.params.query })
         .then(next)
         .catch(next);
   },
+  getImages: function(req, res, next) {
+    request('https://google.com/search')
+  }
 }

@@ -4,7 +4,7 @@ const chaiHttp = require('chai-http');
 chai.use(chaiHttp);
 
 const app = require('../app')();
-const SearchQueryModel = require('../api/search/SearchQuery.model');
+const SearchQueryModel = require('../api/search/Search.model');
 
 mocha.describe('Endpoint /api/v1/imagesearch', () => {
   mocha.before((done) => {

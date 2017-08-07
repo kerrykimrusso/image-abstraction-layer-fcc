@@ -12,7 +12,7 @@ module.exports = function() {
     response.sendFile(__dirname + '/views/index.html');
   });
   
-  app.use(routes(app));
+  app.use(routes);
 
   // listen for requests :)
   const listener = app.listen(process.env.PORT, function () {
