@@ -1,11 +1,10 @@
-const http = require('http');
 const model = require('./Search.model');
 
 module.exports = {
   list: function(req, res, next) {
-      model.find({}).select("term when -d").then((err, docs) => {
+      model.find({}).select("term when -_id").then((err, docs) => {
           if(err) {
-              next(err);
+              next();
               return;
           }
 
@@ -14,24 +13,14 @@ module.exports = {
   },
   saveQuery: function(req, res, next) {
       model.create({ term: req.params.query })
-        .then(next)
-        .catch(next);
+        .then((doc) => {
+          next();
+        })
+        .catch(() => {
+          next();
+        });
   },
   getImages: function(req, res, next) {
-    let opts = {
-      host: "https://google.com",
-      path: "/search?q=" + req.params.query
-    };
-    
-    http.request(opts, (res) => {
-      let str = '';
-      res.on('data', (chunk) => {
-        str += chunk;
-      });
-      
-      res.on('end', () => {
-        console.log(str);
-      });
-    });
+    res.send('getImages()').end();
   }
 }
