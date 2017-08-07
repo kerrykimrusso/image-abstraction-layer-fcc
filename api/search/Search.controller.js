@@ -24,6 +24,14 @@ module.exports = {
         });
   },
   getImages: function(req, res, next) {
-    imgSearch.search()
+    const opts = {
+      page: 1
+    };
+    
+    imgSearch.search(req.params.query, opts)
+      .then(images => { 
+        res.json(images);
+      })
+      .catch(console.log.bind(console));
   }
 }
