@@ -9,12 +9,13 @@
     "start": "node server.js"
   },
   "dependencies": {
-    "express": "^4.15.3",
-    "mongoose": "^4.11.5",
-    "mocha": "^3.5.0",
     "chai": "^4.1.1",
     "chai-http": "^3.0.0",
-    "follow-redirects": "^1.2.4"
+    "express": "^4.15.4",
+    "follow-redirects": "^1.2.4",
+    "image-search-google": "^1.0.4",
+    "mocha": "^3.5.0",
+    "mongoose": "^4.11.5"
   },
   "engines": {
     "node": "8.x"
