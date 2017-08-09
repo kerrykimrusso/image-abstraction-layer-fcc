@@ -5,18 +5,16 @@ const model = require('./Search.model');
 
 module.exports = {
   list: function(req, res, next) {
-      model.find({}).select("term when -_id").then((docs) => {
+      model.find({}).select("term when -_id").then(docs => {
           res.json(docs).end();
-      });
+      }).catch(console.log.bind(console));
   },
   saveQuery: function(req, res, next) {
       model.create({ term: req.params.query })
-        .then((doc) => {
+        .then(doc => {
           next();
         })
-        .catch(() => {
-          next();
-        });
+        .catch(console.log.bind(console));
   },
   getImages: function(req, res, next) {
     const opts = {
