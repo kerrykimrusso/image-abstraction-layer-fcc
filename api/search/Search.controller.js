@@ -17,8 +17,9 @@ module.exports = {
         .catch(console.log.bind(console));
   },
   getImages: function(req, res, next) {
+    let offset = parseInt(req.query.offset) || 1;
     const opts = {
-      page: 1
+      page: offset
     };
     
     imgSearch.search(req.params.query, opts)
