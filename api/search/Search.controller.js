@@ -5,12 +5,7 @@ const model = require('./Search.model');
 
 module.exports = {
   list: function(req, res, next) {
-      model.find({}).select("term when -_id").then((err, docs) => {
-          if(err) {
-              next();
-              return;
-          }
-
+      model.find({}).select("term when -_id").then((docs) => {
           res.json(docs).end();
       });
   },

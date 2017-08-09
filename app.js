@@ -1,9 +1,11 @@
 const express = require('express');
+const logger = require('morgan');
 const routes = require('./routes/api');
 
 module.exports = function() {  
   const app = express();
 
+  app.use(logger('dev'));
   // http://expressjs.com/en/starter/static-files.html
   app.use(express.static('public'));
   
